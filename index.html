@@ -1,38 +1,245 @@
 <!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" 
+rel="stylesheet">
 <html>
     <head>
         <style>
             header{
                 background: rgb(0, 0, 0);
                 background-size: cover;
+                overflow: hidden;
             }
             li{ list-style-position: inside;
                 float :left;
-                padding : 15px;
+                padding : 1%;
                 color : whitesmoke;
             }
+            li:hover{color:cadetblue;}
             #name{
                 clear:left;
-                padding-left: 5%;
+                padding-left: 1%;
+                flex:1;
+                
+            }
+            button{background: none;
+            color : whitesmoke;
+        border:none;  
+                }
+            h1 > p1{font-size: 600%;}
+            h1 > p2{font-size: 350%;}
+            h1 > p3{font-size: 400%;}
+            div{
+                display: flex;
+            }
+            h2{
+                flex: 3;
+                background: black;
+                color: white; 
+                padding: 10px;
+                margin: 0;
+            }
+            footer{background: gray;
+            background-size: cover;
+            padding-top: 2%;
+            height: 100px;}
+            #contentArea {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
+            .card {
+                width: 100%;
+                max-width: 800px;
+                margin: 20px auto;
+                flex-direction: column
             }
 
-        </style>
+            .card h3 {
+                text-align: center;
+                display: block;
+                width: 100%;
+                font-size: 32px;
+                margin-bottom: 20px;
+                color: #e4deff;
+                font-weight: bold;
+            }
 
+            #infos {
+                margin: 0 auto;
+                width: fit-content;
+                text-align: left;
+                line-height: 1.6;
+                font-size: 30px;
+            }
+
+            #hobbys {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .hobby-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .hobby-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .hobby-item img {
+                width: 60%;
+                height: auto;
+                aspect-ratio: 1 / 1;
+                border-radius: 10px;
+                margin-bottom: 10px;
+                object-fit: cover;
+            }
+
+            .hobby-item p {
+                font-size: 23px;
+                margin: 0;
+            }
+            #pros_cons_layout {
+            display: flex;
+            justify-content: center; 
+            gap: 130px;   
+            align-items: center;           
+            margin: 0 auto;
+            width: fit-content;
+                }
+
+        .pros_box, .cons_box {
+            text-align: left;
+            min-width: 259px;
+            font-size: 25px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            flex-direction: column;
+            color:#ccc;
+        }
+        details div {
+            font-size: 16px;
+            color: #ccc;
+        }
+        
+
+        .pros_box strong { color: #7ce9f8; } 
+        .cons_box strong { color: #5f5cfc; }
+</style>
+
+<script>
+    function Content(category){
+        const contentArea = document.getElementById("contentArea");
+        let text = "";
+        
+        if (category === 'hobby') {
+            text = `
+                <div id="hobbys" class="card">
+                    <h3>취미</h3>
+                    <div class="hobby-grid">
+                        <div class="hobby-item">
+                            <img src="music.jpg"><p>음악듣기</p>
+                        </div>
+                        <div class="hobby-item">
+                            <img src="instrument.jpg"><p>악기연주</p>
+                        </div>
+                        <div class="hobby-item">
+                            <img src="game.png"><p>게임하기</p>
+                        </div>
+                        <div class="hobby-item">
+                            <img src="sleep.jpg"><p>잠자기</p>
+                        </div>
+                    </div>
+                </div>`;
+        } else if (category === 'info') {
+            text = `
+                <div class="card">
+                    <h3>인적사항</h3>
+                    <div id="infos">
+                        이름: 김성현<br>
+                        학번: 25학번<br>
+                        나이: 21살<br>
+                        전공: 글로벌미디어학부<br>
+                        MBTI: INTP<br><br>
+                        특이사항: 자유전공학부에서 글로벌미디어학부로 전과함
+                    </div>
+                </div>`;
+                }
+                  else if (category === 'pros_cons') {
+            text = `
+                <div class="card">
+                    <h3>장점 및 단점</h3>
+                    <div id="pros_cons_layout">
+                        <div class="pros_box">
+                            <strong>장점</strong>
+                            <details>
+                                <summary>- 경험</summary>
+                                <div>HTML,CSS,JS를 사용해 둘이서 영화예매 사이트를 만들어본 경험이 있습니다.</div>
+                            </details>
+                            <details>
+                                <summary>- 끈기</summary>
+                                <div>밤을 새워서라도 문제를 해결합니다.</div>
+                            </details>
+                        </div>
+                        
+                        <div class="cons_box">
+                            <strong>단점</strong>
+                            <details>
+                                <summary>- 낯가림</summary>
+                                <div>낯을 가려서 빨리 적응하고자 합니다.</div>
+                            </details>
+                            <details>
+                                <summary>- 기획력</summary>
+                                <div>부족학 기획력을 채우기 위해 노력중입니다.</div>
+                            </details>
+                        </div>
+                    </div>
+                </div>`;
+                } else if (category === 'team') {
+                    text = `
+                <div class="card">
+                    <h3>원하는 팀원</h3>
+                    <div id="teams">
+                        1.창의적인 사람
+                        2.친화력이 좋은사람
+                        3.열정적인 사람
+                    </div>
+                </div>`;
+                } else if (category === 'goal') {
+                    text = "수업목표: 이번 학기 안에 완벽한 웹 포트폴리오를 완성하는 것입니다.";
+                }
+                contentArea.innerHTML = text;
+            }
+        </script>
     </head>
     <body>
         <header>
             <ul>
-                <li>취미</li>
-                <li>인적사항</li>    
-                <li>특이사항</li>  
+                <li><button type="button" onclick="Content('info')">인적사항</button></li> 
+                <li><button type="button" onclick="Content('hobby')">취미</button></li>
+                <li><button type="button" onclick="Content('pros_cons')">장점 및 단점</button></li>
+                <li><button type="button" onclick="Content('team')">원하는 팀원</button></li>  
+                <li><button type="button" onclick="Content('goal')">수업목표</button></li>    
             </ul>   
         </header>
-        <h1 id="name">
-            <p1><br>KIM</p1>
-            <p2><br>SEONG</p2>
-            <p3><br>HYUN</p3>
-        </h1>
+        <div>
+            <h1 id="name">
+                <p1>KIM</p1>
+                <p2><br>SEONG</p2>
+                <p3><br>HYUN</p3>
+            </h1>
+            <h2 id="contentArea">
+                
+            </h2>
+        </div>
+        <footer>
 
+        </footer>
     </body>
 </html>
